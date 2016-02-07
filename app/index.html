@@ -11,29 +11,18 @@
   </head>
   <body ng-app="bookmarksApp">
 
-  <div ng-controller="mainController as vm">
-    <label>Search:</label>
-    <input type="text" ng-model="search.title">
-    <label>Order by:</label>
-    <select ng-model="vm.orderBy">
-      <option value="title">By Title</option>
-      <option value="creationDate">By Date</option>
-    </select>
-    <hr>
-    <button type="button" ng-click="vm.addBookmark()">Add new bookmark</button>
-    <hr>
-    <ul>
-      <li ng-repeat="bookmark in vm.bookmarks | orderBy:vm.orderBy | filter:search:strict">
-        <bookmark bookmark="bookmark" on-delete-bookmark="vm.removeBookmark(id)"></bookmark>
-      </li>
-    </ul>
-  </div>
+  <login></login>
+  <signup></signup>
+  <bookmarks-list></bookmarks-list>
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="scripts/directives/bookmark.js"></script>
+    <script src="scripts/components/bookmarks-list/bookmarks-list.js"></script>
+    <script src="scripts/components/bookmark/bookmark.js"></script>
+    <script src="scripts/components/login/login.js"></script>
+    <script src="scripts/components/signup/signup.js"></script>
     <script src="scripts/services/BookmarksService.js"></script>
-    <script src="scripts/controllers/mainController.js"></script>
     <!-- endbuild -->
 </body>
 </html>
