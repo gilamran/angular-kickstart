@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bookmarksApp')
-  .controller('mainController', function ($scope) {
-    $scope.bookmarks = [
+  .controller('mainController', function () {
+    this.bookmarks = [
       {
         id: '1',
         title: 'bookmark 1',
@@ -20,16 +20,16 @@ angular.module('bookmarksApp')
       }
     ];
 
-    $scope.addBookmark = function() {
-      $scope.bookmarks.push({
+    this.addBookmark = function() {
+      this.bookmarks.push({
         id: Math.random().toString(),
         title: 'new bookmark',
         creationDate: (new Date()).getTime()
       });
     };
 
-    $scope.removeBookmark = function(id) {
-      $scope.bookmarks = $scope.bookmarks.filter(function(bookmark) {
+    this.removeBookmark = function(id) {
+      this.bookmarks = this.bookmarks.filter(function(bookmark) {
         return (bookmark.id !== id)
       })
     }

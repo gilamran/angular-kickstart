@@ -11,14 +11,14 @@
   </head>
   <body ng-app="bookmarksApp">
 
-  <div ng-controller="mainController">
+  <div ng-controller="mainController as vm">
     <ul>
-      <button type="button" ng-click="addBookmark()">Add</button>
-      <li ng-repeat="bookmark in bookmarks">
+      <button type="button" ng-click="vm.addBookmark()">Add</button>
+      <li ng-repeat="bookmark in vm.bookmarks">
         <div>{{bookmark.id}}</div>
         <div>{{bookmark.title}}</div>
         <div>{{bookmark.creationDate}}</div>
-        <button ng-click="removeBookmark(bookmark.id)">Delete</button>
+        <button ng-click="vm.removeBookmark(bookmark.id)">Delete</button>
       </li>
     </ul>
   </div>
