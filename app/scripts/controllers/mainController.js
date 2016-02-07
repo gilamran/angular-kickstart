@@ -3,7 +3,7 @@
 angular.module('bookmarksApp')
   .controller('mainController', function (BookmarksService) {
     this.bookmarks = BookmarksService.bookmarks;
-    this.filterByTxt = '';
+    this.orderBy = 'title';
 
     this.addBookmark = function() {
       BookmarksService.addBookmark();

@@ -14,11 +14,16 @@
   <div ng-controller="mainController as vm">
     <label>Search:</label>
     <input type="text" ng-model="search.title">
+    <label>Order by:</label>
+    <select ng-model="vm.orderBy">
+      <option value="title">By Title</option>
+      <option value="creationDate">By Date</option>
+    </select>
     <hr>
     <button type="button" ng-click="vm.addBookmark()">Add new bookmark</button>
     <hr>
     <ul>
-      <li ng-repeat="bookmark in vm.bookmarks | filter:search:strict">
+      <li ng-repeat="bookmark in vm.bookmarks | orderBy:vm.orderBy | filter:search:strict">
         <div>{{bookmark.id}}</div>
         <div>{{bookmark.title}}</div>
         <div>{{bookmark.creationDate | date}}</div>

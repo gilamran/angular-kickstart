@@ -6,7 +6,7 @@ angular.module('bookmarksApp')
       {
         id: '1',
         title: 'bookmark 1',
-        creationDate: (new Date(2016, 1, 20)).getTime()
+        creationDate: (new Date(2016, 1, 25)).getTime()
       },
       {
         id: '2',
