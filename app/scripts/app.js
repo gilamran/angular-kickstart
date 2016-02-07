@@ -1,1 +1,3 @@
-console.log('Vanilla JS');
+'use strict';
+
+angular.module('bookmarksApp', []);
