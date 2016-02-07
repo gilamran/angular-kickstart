@@ -12,12 +12,16 @@
   <body ng-app="bookmarksApp">
 
   <div ng-controller="mainController as vm">
+    <label>Search:</label>
+    <input type="text" ng-model="search.title">
+    <hr>
+    <button type="button" ng-click="vm.addBookmark()">Add new bookmark</button>
+    <hr>
     <ul>
-      <button type="button" ng-click="vm.addBookmark()">Add</button>
-      <li ng-repeat="bookmark in vm.bookmarks">
+      <li ng-repeat="bookmark in vm.bookmarks | filter:search:strict">
         <div>{{bookmark.id}}</div>
         <div>{{bookmark.title}}</div>
-        <div>{{bookmark.creationDate}}</div>
+        <div>{{bookmark.creationDate | date}}</div>
         <button ng-click="vm.removeBookmark(bookmark.id)">Delete</button>
       </li>
     </ul>

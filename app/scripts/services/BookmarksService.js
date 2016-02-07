@@ -42,5 +42,5 @@ angular.module('bookmarksApp')
       if (bookmarkIdx > -1) {
         this.bookmarks.splice(bookmarkIdx, 1);
       }
-    }
+    };
   });
