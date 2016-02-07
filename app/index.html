@@ -24,16 +24,14 @@
     <hr>
     <ul>
       <li ng-repeat="bookmark in vm.bookmarks | orderBy:vm.orderBy | filter:search:strict">
-        <div>{{bookmark.id}}</div>
-        <div>{{bookmark.title}}</div>
-        <div>{{bookmark.creationDate | date}}</div>
-        <button ng-click="vm.removeBookmark(bookmark.id)">Delete</button>
+        <bookmark bookmark="bookmark" on-delete-bookmark="vm.removeBookmark(id)"></bookmark>
       </li>
     </ul>
   </div>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/directives/bookmark.js"></script>
     <script src="scripts/services/BookmarksService.js"></script>
     <script src="scripts/controllers/mainController.js"></script>
     <!-- endbuild -->
