@@ -13,13 +13,14 @@
 
   <div ng-controller="mainController">
     <ul>
+      <button type="button" ng-click="addBookmark()">Add</button>
       <li ng-repeat="bookmark in bookmarks">
         <div>{{bookmark.id}}</div>
         <div>{{bookmark.title}}</div>
         <div>{{bookmark.creationDate}}</div>
+        <button ng-click="removeBookmark(bookmark.id)">Delete</button>
       </li>
     </ul>
-    {{message}}
   </div>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="bower_components/angular/angular.js"></script>

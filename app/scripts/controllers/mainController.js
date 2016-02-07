@@ -19,4 +19,18 @@ angular.module('bookmarksApp')
         creationDate: (new Date(2016, 1, 22)).getTime()
       }
     ];
+
+    $scope.addBookmark = function() {
+      $scope.bookmarks.push({
+        id: Math.random().toString(),
+        title: 'new bookmark',
+        creationDate: (new Date()).getTime()
+      });
+    };
+
+    $scope.removeBookmark = function(id) {
+      $scope.bookmarks = $scope.bookmarks.filter(function(bookmark) {
+        return (bookmark.id !== id)
+      })
+    }
   });
