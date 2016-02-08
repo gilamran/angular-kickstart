@@ -3,9 +3,9 @@
 angular.module('bookmarksApp')
   .directive('compareTo', function () {
     return {
-      require: "ngModel",
+      require: 'ngModel',
       scope: {
-        otherModelValue: "=compareTo"
+        otherModelValue: '=compareTo'
       },
       link: function (scope, element, attributes, ngModel) {
 
@@ -13,9 +13,9 @@ angular.module('bookmarksApp')
           return modelValue === scope.otherModelValue;
         };
 
-        scope.$watch("otherModelValue", function () {
+        scope.$watch('otherModelValue', function () {
           ngModel.$validate();
         });
-      };
-    }
+      }
+    };
   });
