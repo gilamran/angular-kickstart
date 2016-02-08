@@ -1,3 +1,25 @@
 'use strict';
 
-angular.module('bookmarksApp', []);
+angular.module('bookmarksApp', ['ui.router'])
+  .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
+    $urlRouterProvider.otherwise('/login');
+    $stateProvider
+      .state('list', {
+          url: '/list',
+          template: '<bookmarks-list></bookmarks-list>'
+        }
+      )
+      .state('login', {
+          url: '/login',
+          template: '<login></login>'
+        }
+      )
+      .state('signup', {
+          url: '/signup',
+          template: '<signup></signup>'
+        }
+      );
+
+    // configure html5 to get links working on jsfiddle
+    $locationProvider.html5Mode(false);
+  });

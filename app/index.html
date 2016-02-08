@@ -11,12 +11,12 @@
   </head>
   <body ng-app="bookmarksApp">
 
-  <login></login>
-  <signup></signup>
-  <bookmarks-list></bookmarks-list>
+  <ui-view></ui-view>
+
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/components/bookmarks-list/bookmarks-list.js"></script>
     <script src="scripts/components/bookmark/bookmark.js"></script>
