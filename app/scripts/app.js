@@ -2,7 +2,8 @@
 
 angular.module('bookmarksApp', ['ui.router', 'ngMessages'])
   .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/list'); // for easy debug
+    //$urlRouterProvider.otherwise('/login');
     $stateProvider
       .state('list', {
           url: '/list',

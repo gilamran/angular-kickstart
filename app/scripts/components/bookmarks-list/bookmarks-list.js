@@ -2,7 +2,13 @@
 
 angular.module('bookmarksApp')
   .controller('bookmarksListController', function (BookmarksService) {
-    this.bookmarks = BookmarksService.bookmarks;
+    this.bookmarks = [];
+    this.isLoading = true;
+    BookmarksService.loadBookmarks().then(function(bookmarks) {
+      this.bookmarks = bookmarks;
+      this.isLoading = false;
+    }.bind(this));
+
     this.orderBy = 'title';
 
     this.addBookmark = function () {
