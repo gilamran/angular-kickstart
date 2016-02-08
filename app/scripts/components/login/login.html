@@ -1,14 +1,21 @@
 <h3>Login:</h3>
-<div>
-  <input type="text" placeholder="Email">
-</div>
-<div>
-  <input type="text" placeholder="Password">
-</div>
-<div>
-  <a ui-sref="list">
-    <button >Login</button>
-  </a>
-</div>
+<form novalidate name="loginForm" ng-submit="loginForm.$valid && $ctrl.doLogin(email, password)">
+  <div>
+    <input type="email" placeholder="Email" ng-model="email" name="email" required>
+    <span ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched">
+      <span ng-message="required">emails is required</span>
+      <span ng-message="email">Must be a valid email</span>
+    </span>
+  </div>
+  <div>
+    <input type="text" placeholder="Password" ng-model="password" name="password" required>
+    <span ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
+      <span ng-message="required">password is required</span>
+    </span>
+  </div>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+</form>
 <p>Don't have an account? <a ui-sref="signup">Sign up</a></p>
 

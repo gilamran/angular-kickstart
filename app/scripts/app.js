@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bookmarksApp', ['ui.router'])
+angular.module('bookmarksApp', ['ui.router', 'ngMessages'])
   .config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/login');
     $stateProvider

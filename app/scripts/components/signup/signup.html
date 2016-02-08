@@ -1,13 +1,40 @@
 <h3>Signup:</h3>
-<div>
-  <input type="text" placeholder="Enter your email">
-</div>
-<div>
-  <input type="text" placeholder="Choose password">
-</div>
-<div>
-  <input type="text" placeholder="Repeat password">
-</div>
-<button>Create Account</button>
-</div>
+<form novalidate name="signupForm" ng-submit="signupForm.$valid && $ctrl.doSignup(email, password)">
+  <div>
+    <input type="email" placeholder="Enter your email" ng-model="email" name="email" required>
+    <span ng-messages="signupForm.email.$error" ng-show="signupForm.email.$touched">
+      <span ng-message="required">emails is required</span>
+      <span ng-message="email">Must be a valid email</span>
+    </span>
+  </div>
+  <div>
+    <input type="text"
+           placeholder="Choose password"
+           ng-model="password"
+           name="password"
+           required
+           ng-minlength="4"
+           ng-maxlength="10">
+    <span ng-messages="signupForm.password.$error" ng-show="signupForm.password.$touched">
+      <span ng-message="required">password is required</span>
+      <span ng-message="minlength">Your password is too short (min 4)</span>
+      <span ng-message="maxlength">Your password is too long (max 10)</span>
+    </span>
+  </div>
+  <div>
+    <input type="text"
+           placeholder="Repeat password"
+           ng-model="repeatPassword"
+           name="repeatPassword"
+           compare-to="password"
+           required>
+    <span ng-messages="signupForm.repeatPassword.$error" ng-show="signupForm.repeatPassword.$touched">
+      <span ng-message="required">password is required</span>
+      <span ng-message="compareTo">passwords do not match</span>
+    </span>
+  </div>
+  <div>
+    <button type="submit">Signup</button>
+  </div>
+</form>
 <p>or <a ui-sref="login">Login</a></p>
