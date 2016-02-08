@@ -16,7 +16,7 @@
     <hr>
     <ul>
       <li ng-repeat="bookmark in $ctrl.bookmarks | orderBy:$ctrl.orderBy | filter:search:strict">
-        <bookmark bookmark="bookmark" on-delete-bookmark="$ctrl.removeBookmark(id)"></bookmark>
+        <bookmark bookmark="bookmark" on-delete-bookmark="$ctrl.removeBookmark(bookmark)"></bookmark>
       </li>
     </ul>
   </div>

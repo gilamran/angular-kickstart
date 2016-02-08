@@ -2,21 +2,23 @@
 
 angular.module('bookmarksApp')
   .controller('bookmarksListController', function (BookmarksService) {
-    this.bookmarks = [];
+    this.bookmarks;
     this.isLoading = true;
-    BookmarksService.loadBookmarks().then(function(bookmarks) {
+    this.orderBy = 'title';
+
+
+    BookmarksService.loadBookmarks().then(function (bookmarks) {
       this.bookmarks = bookmarks;
       this.isLoading = false;
     }.bind(this));
 
-    this.orderBy = 'title';
 
     this.addBookmark = function () {
       BookmarksService.addBookmark();
     };
 
-    this.removeBookmark = function (id) {
-      BookmarksService.removeBookmark(id);
+    this.removeBookmark = function (bookmark) {
+      BookmarksService.removeBookmark(bookmark);
     };
   });
 
