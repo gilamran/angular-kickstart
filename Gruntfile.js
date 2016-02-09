@@ -15,8 +15,7 @@ module.exports = function (grunt) {
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    ngtemplates: 'grunt-angular-templates'
   });
 
   // Configurable paths for the application
@@ -47,9 +46,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      compass: {
+      sass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'postcss:server']
+        tasks: ['sass:server', 'postcss:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -173,43 +172,19 @@ module.exports = function (grunt) {
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: './app/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
+    sass: {
       dist: {
-        options: {
-          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-        }
+        outputStyle: 'compressed',
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
+        },
+        sourceMap: false
       },
       server: {
-        options: {
-          sourcemap: true
-        }
-      }
-    },
-
-    // Renames files for browser caching purposes
-    filerev: {
-      dist: {
-        src: [
-          '<%= yeoman.dist %>/scripts/{,*/}*.js',
-          '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
-        ]
+        files: {
+          '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
+        },
+        sourceMap: true
       }
     },
 
@@ -223,8 +198,7 @@ module.exports = function (grunt) {
         flow: {
           html: {
             steps: {
-              js: ['concat', 'uglifyjs'],
-              css: ['cssmin']
+              js: ['concat']
             },
             post: {}
           }
@@ -232,7 +206,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Performs rewrites based on filerev and the useminPrepare configuration
+    // Performs rewrites based on useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -253,72 +227,14 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
     // concat: {
     //   dist: {}
     // },
-
-    imagemin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
-        }]
-      }
-    },
-
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
-        }]
-      }
-    },
-
-    htmlmin: {
-      dist: {
-        options: {
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.dist %>',
-          src: ['*.html'],
-          dest: '<%= yeoman.dist %>'
-        }]
-      }
-    },
 
     ngtemplates: {
       dist: {
         options: {
           module: 'angularKickstartApp',
-          htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
@@ -340,13 +256,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.html']
-      }
-    },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -357,9 +266,18 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
-            '*.html',
+            '**/*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'bower_components/bootstrap/dist/css/bootstrap.css',
+            'bower_components/bootstrap/dist/fonts/*.*',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-messages/angular-messages.js',
+            'bower_components/angular-ui-router/release/angular-ui-router.js',
+            'bower_components/angular-bootstrap/ui-bootstrap.js',
+            'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+            'bower_components/firebase/firebase-debug.js',
+            'bower_components/angularfire/dist/angularfire.js'
           ]
         }, {
           expand: true,
@@ -379,12 +297,10 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'sass:server'
       ],
       dist: [
-        'compass:dist',
-        'imagemin',
-        'svgmin'
+        'sass:dist'
       ]
     }
   });
@@ -418,12 +334,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
-    'cssmin',
-    'uglify',
-    'filerev',
-    'usemin',
-    'htmlmin'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
