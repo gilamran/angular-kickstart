@@ -1,40 +1,46 @@
 <div class="container">
-    <div class="page-header">
-      <h2>Bookmarks List <small>That rock!</small></h2>
-    </div>
-    <div ng-show="$ctrl.isLoading">
-      Loading...
-    </div>
-    <div ng-show="!$ctrl.isLoading">
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="input-group">
-            <span class="input-group-addon" id="search-addon"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search bookmark"
-                   aria-describedby="search-addon"
-                   ng-model="search.title">
-          </div>
-        </div>
-
-        <div class="col-xs-6">
-          <div class="input-group">
-            <span class="input-group-addon" id="order-by-addon">Order By</span>
-            <select ng-model="$ctrl.orderBy" class="form-control">
-              <option value="title">By Title</option>
-              <option value="creationDate">By Date</option>
-            </select>
-          </div>
+  <div class="page-header">
+    <h2>Bookmarks List
+      <small>That rock!</small>
+    </h2>
+  </div>
+  <div ng-show="$ctrl.isLoading">
+    Loading...
+  </div>
+  <div ng-show="!$ctrl.isLoading">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="search-addon"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Search bookmark"
+                 aria-describedby="search-addon"
+                 ng-model="search.title">
         </div>
       </div>
 
-      <hr>
-      <button class="btn btn-primary" type="button" ng-click="$ctrl.addBookmark()">Add new bookmark</button>
-      <hr>
+      <div class="col-xs-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="order-by-addon">Order By</span>
+          <select ng-model="$ctrl.orderBy" class="form-control">
+            <option value="title">By Title</option>
+            <option value="creationDate">By Date</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.addBookmark()">Add new bookmark</button>
+    <hr>
+    <div class="bookmarks-container">
       <bookmark ng-repeat="bookmark in $ctrl.bookmarks | orderBy:$ctrl.orderBy | filter:search:strict"
                 bookmark="bookmark"
+                ng-draggable
+                class="bookmark"
                 on-delete-bookmark="$ctrl.removeBookmark(bookmark)">
       </bookmark>
     </div>
+  </div>
 </div>

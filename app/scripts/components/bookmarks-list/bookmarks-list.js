@@ -36,6 +36,10 @@ angular.module('bookmarksApp')
     this.removeBookmark = function (bookmark) {
       BookmarksService.removeBookmark(bookmark);
     };
+
+    this.test = function () {
+      console.log('asdf');
+    }
   });
 
 angular.module('bookmarksApp')
