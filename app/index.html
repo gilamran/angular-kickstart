@@ -1,32 +1,36 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="bookmarksApp">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <!-- endbuild -->
+</head>
+<body ng-app="bookmarksApp">
 
   <ui-view></ui-view>
 
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/firebase/firebase-debug.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/directives/compareTo.js"></script>
-    <script src="scripts/components/bookmarks-list/bookmarks-list.js"></script>
-    <script src="scripts/components/bookmark/bookmark.js"></script>
-    <script src="scripts/components/login/login.js"></script>
-    <script src="scripts/components/signup/signup.js"></script>
-    <script src="scripts/services/BookmarksService.js"></script>
-    <!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/firebase/firebase-debug.js"></script>
+  <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/directives/compareTo.js"></script>
+  <script src="scripts/components/bookmark-edit/BookmarkEditModalCtrl.js"></script>
+  <script src="scripts/components/bookmarks-list/bookmarks-list.js"></script>
+  <script src="scripts/components/bookmark/bookmark.js"></script>
+  <script src="scripts/components/login/login.js"></script>
+  <script src="scripts/components/signup/signup.js"></script>
+  <script src="scripts/services/BookmarksService.js"></script>
+  <!-- endbuild -->
 </body>
 </html>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bookmarksApp')
-  .controller('bookmarksListController', function (BookmarksService) {
+  .controller('bookmarksListController', function (BookmarksService, $uibModal) {
     this.bookmarks;
     this.isLoading = true;
     this.orderBy = 'title';
@@ -12,9 +12,25 @@ angular.module('bookmarksApp')
       this.isLoading = false;
     }.bind(this));
 
+    this.editBookmark = function(bookmark) {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'scripts/components/bookmark-edit/BookmarkEditModalView.html',
+        controller: 'BookmarkEditModalCtrl',
+        controllerAs: 'bookmarkEditCtrl',
+        resolve: {
+          bookmark: bookmark
+        }
+      });
+
+      return modalInstance.result;
+    };
 
     this.addBookmark = function () {
-      BookmarksService.addBookmark();
+      var newBookmark = BookmarksService.createBookmark();
+      this.editBookmark(newBookmark).then(function (bookmark) {
+        console.log('Modal close', bookmark);
+        BookmarksService.addBookmark(newBookmark);
+      });
     };
 
     this.removeBookmark = function (bookmark) {

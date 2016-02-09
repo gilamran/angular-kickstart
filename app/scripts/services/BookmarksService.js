@@ -17,11 +17,15 @@ angular.module('bookmarksApp')
       return loadingPromise;
     };
 
-    this.addBookmark = function () {
-      bookmarks.$add({
+    this.addBookmark = function (bookmark) {
+      bookmarks.$add(bookmark);
+    };
+
+    this.createBookmark = function () {
+      return {
         title: 'new bookmark',
-        creationDate: (new Date()).getTime()
-      });
+          creationDate: (new Date()).getTime()
+      }
     };
 
     this.removeBookmark = function (bookmark) {

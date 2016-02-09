@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h3 class="modal-title">New Bookmark</h3>
+</div>
+<div class="modal-body">
+  <div>Title:{{bookmarkEditCtrl.bookmark.title}}</div>
+  <div>Creation Date:{{bookmarkEditCtrl.bookmark.creationDate | date}}</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="bookmarkEditCtrl.ok()">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="bookmarkEditCtrl.cancel()">Cancel</button>
+</div>
